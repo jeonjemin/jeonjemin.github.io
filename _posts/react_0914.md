@@ -60,6 +60,8 @@ render : 여기 React element 를 가지고 HTML로 만들어 사용자에게 �
 
 ## JSX로 create element.
 
+`<script type = "text/babel" src="reactprac.js">` 으로 html파일에 둬야 jsx 사용가능. 
+
 ```jsx
 const root=document.querySelector("#root");
 let counter = 0;
@@ -81,6 +83,7 @@ const Button=()=>(
 function render(){
   ReactDOM.render(<Container/>, root);
 }
+//Container 는 함수이므로 componets로 만들어줘야된다. 
 
 function Title() {
       return (<h3 id="title" onMouseEnter= {()=>console.log("mouseenter")}>It was clicked {counter}</h3>
@@ -96,4 +99,50 @@ Container에 div안에 들어가는 요소들 이름의 첫글짜는 반드시 �
 JSX로 써져있는 코드를 babel이 react.createelement 느낌의 코드로 변환 해 준다. 만든 Components를 다른데서 쓰고싶으면 함수형태로 만들고 이름 첫 글자를 대문자로 해야된다. 
  ()=> arrow function은 return까지 포함된 함수이다. 
 
-{변수명} 이렇게 html에 변수 표시.
+components 나 jsx에 변수를 포함하고 싶으면 {변수명} 이렇게 html에 변수 표시.
+  
+ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total Clicks : *ㅠ5 업데이트하면 span 등 등 수정되지 않는 부분도 다 업데이트 되는데 react.js에서는 ui에서 바뀐 부분만 업데이트 됨. rerender 해도 바뀌는 부분만 업데이트됨. container가 재생성 되지만 바뀌는 숫자 부분. Total Clicks : *b4 부분만 rerender됨. 
+  
+  
+ ## javascript 배열에서 요소들을 꺼내서 이름을 부여하는법. 
+  ```
+  const x=[1,2];
+  const a=x[0];
+  const b=x[1];
+  ```
+  ```
+  const x=[1,2];
+  const [a,b,c] = x;
+  ```
+  같은 표현이다. 
+  
+  ```function App(){
+  return (
+    <div>
+      <h3 id = "title">It was clicked {counter}</h3>
+        <button id = "button" onClick={countUp}>Click</button>
+    </div>);
+}
+  ```
+  
+##state, modifier 함수. 
+  
+   ```
+  function App(){
+  const [counter, setCounter] = React.useState(0);
+  const onClick=()=>{
+    setCounter(counter+1);
+  };
+  return (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+        <button onClick={onClick}>Click</button>
+    </div>);
+}
+  ```
+  `React.useState(initial value, function)`
+  -> [0,f]
+  0: state, f : 그 값을 바꾸는 함수.  modifier 함수 
+  modifier함수로 state(counter)를 바꾸면 그 바뀐 값으로 Component전체가(App)을 재생성하고 재렌더링한다. 
+  state가 바뀌면 리렌더링이 일어난다. 
+  
