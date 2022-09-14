@@ -125,19 +125,25 @@ ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total C
 }
   ```
   
-##Arrow function
+## Arrow function
   전통적인 함수표현의 대안. methods로 사용 불가. 생성자로 사용 불가. this 사용 불가.  
-  `(param1, param2, ,,) =>{statements}` ex)console.log(param1, param2,,,);
-  `(param1, param2, ,,) =>expression`   ex)param1+param2          ;없음.
-  `{return expression;} 과 같다. 
+  `(param1, param2, ,,) =>{statements}` 
+  ex){console.log(param1, param2,,,);}
+  ```
+  (param1, param2, ,,) =>expression  
+  func(param1,,,,){return expression;}
+  ```
+  위 두 표현 같다. function이 expression계산해서 결과를 *b리턴한다. 
+  ex)param1+param2; {}사용하면 안됨 return param1+param2; 를 써야 리턴가능.  
+ 
   
   `(singleParam)=>{statements}` or `singleParam => {statements}`
-  매개변수가 하나일땐 괄호 선택사항.
+  매개변수가 하나일땐 괄호 생략가능
   `()=>{statements}`
   매개변수 없으면 괄호 필수
-  `function(param1){return param1+10;}` 이랑 `const function=(param1)=>{param1+10;}`
+  `function(param1){return param1+10;}` 이랑 `const function=(param1)=>param1+10;`
   
-##state, modifier 함수. 
+## state, modifier 함수. 
   
    ```
   function App(){
@@ -159,3 +165,5 @@ ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total C
   state가 바뀌면 리렌더링이 일어난다. 
   
   render()를 처음 실행하면 html에 app component 생성, 리렌더링 시 바뀐 부분만 새로 생성. 
+  
+  안보고 ㄱ
