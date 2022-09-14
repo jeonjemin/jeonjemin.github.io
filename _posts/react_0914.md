@@ -101,18 +101,18 @@ JSX로 써져있는 코드를 babel이 react.createelement 느낌의 코드로 �
 
 components 나 jsx에 변수를 포함하고 싶으면 {변수명} 이렇게 html에 변수 표시.
   
-ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total Clicks : *ㅠ5 업데이트하면 span 등 등 수정되지 않는 부분도 다 업데이트 되는데 react.js에서는 ui에서 바뀐 부분만 업데이트 됨. rerender 해도 바뀌는 부분만 업데이트됨. container가 재생성 되지만 바뀌는 숫자 부분. Total Clicks : *b4 부분만 rerender됨. 
+ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total Clicks : *b5 업데이트하면 span 등 등 수정되지 않는 부분도 다 업데이트 되는데 react.js에서는 ui에서 바뀐 부분만 업데이트 됨. rerender 해도 바뀌는 부분만 업데이트됨. container가 재생성 되지만 바뀌는 숫자 부분. Total Clicks : *b4 부분만 rerender됨. 
   
+-> 문제점 : 데이터 바뀔때마다 계속 다시 render() 호출해줘야됨.
   
  ## javascript 배열에서 요소들을 꺼내서 이름을 부여하는법. 
   ```
   const x=[1,2];
   const a=x[0];
   const b=x[1];
-  ```
-  ```
+  
   const x=[1,2];
-  const [a,b,c] = x;
+  const [a,b] = x;
   ```
   같은 표현이다. 
   
@@ -124,6 +124,18 @@ ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total C
     </div>);
 }
   ```
+  
+##Arrow function
+  전통적인 함수표현의 대안. methods로 사용 불가. 생성자로 사용 불가. this 사용 불가.  
+  `(param1, param2, ,,) =>{statements}` ex)console.log(param1, param2,,,);
+  `(param1, param2, ,,) =>expression`   ex)param1+param2          ;없음.
+  `{return expression;} 과 같다. 
+  
+  `(singleParam)=>{statements}` or `singleParam => {statements}`
+  매개변수가 하나일땐 괄호 선택사항.
+  `()=>{statements}`
+  매개변수 없으면 괄호 필수
+  `function(param1){return param1+10;}` 이랑 `const function=(param1)=>{param1+10;}`
   
 ##state, modifier 함수. 
   
@@ -141,8 +153,9 @@ ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total C
 }
   ```
   `React.useState(initial value, function)`
-  -> [0,f]
-  0: state, f : 그 값을 바꾸는 함수.  modifier 함수 
+  -> [state ,modifier] react.useState함수는 어떤값과 그 값을 바꿀 수 있는 함수modifier를 반환한다. 
+  state 값 , modifier : 그 값을 바꾸는 함수.  modifier 함수 
   modifier함수로 state(counter)를 바꾸면 그 바뀐 값으로 Component전체가(App)을 재생성하고 재렌더링한다. 
   state가 바뀌면 리렌더링이 일어난다. 
   
+  render()를 처음 실행하면 html에 app component 생성, 리렌더링 시 바뀐 부분만 새로 생성. 
