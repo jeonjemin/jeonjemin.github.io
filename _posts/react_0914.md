@@ -45,8 +45,13 @@ const btn = React.createElement(
 ```
 
 `React.createElement(html태그이름, property, content)`
+| 보통 이렇게 쓰지 않는다. 
 
+property : 해당 요소의 id, style뿐 아니라, eventListener도 넣을 수 있다!
 event이름앞에 on을 붙이면 eventlistner인걸 react가 인지. →html에 생성 x
+eventListener("click", handleClick) → onClick: handleClick
+반드시 Dictionary 형식이어야 하며, 필요 없으면 null
+
 
 ```jsx
 const root = document.querySelector("#root");
@@ -167,4 +172,10 @@ ui업데이트 된거 보여주려면 `render()` 다시 호출. js에서 Total C
   
   render()를 처음 실행하면 html에 app component 생성, 리렌더링 시 바뀐 부분만 새로 생성. 
   
-  안보고 ㄱ
+  onClick = {onClick} 
+  뒤에 onClick이 변수? 함수?로 사용 됨. 변수뿐만아니라 함수에도 {함수명} 가능한가봄.
+  
+  안보고 정리하는식
+  
+  세미콜론의 의미 : 구문 종결. 구문이 끝날때 사용한다. 
+  이전의 명령어가 ;전까지만 유효한 것임을 알려줌. 
